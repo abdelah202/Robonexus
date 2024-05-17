@@ -17,6 +17,7 @@ RoboNexus is a responsive website dedicated to the sale and custom design of rob
 - CSS3
 - JavaScript
 - jQuery
+- Node js
 
 ## Installation
 
@@ -45,9 +46,7 @@ RoboNexus is a responsive website dedicated to the sale and custom design of rob
 ### Track Your Robot
 ![Track Your Robot](screenshots/track.png)
 
-## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 
 
