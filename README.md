@@ -1,21 +1,35 @@
+![RoboNexus Logo](screenshots/logo.png)
+
 # RoboNexus - Vente et Conception de Robots
 
 RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
+
+## Team Members
+
+MALKI Abdellah - ELKOUSSAMI Khalid - OUABDERH Mohamed - TAOUIL Abdellah
 
 ## Features
 
 - **Responsive Navigation Bar:** The navigation bar transforms into a menu icon on smaller screens for a seamless browsing experience across all devices.
 - **Image Slider:** A dynamic image slider showcases various robot models, changing images every 10 seconds or when clicked.
 - **Service Sections:** Dedicated sections provide detailed information on robot sales and custom design services, ensuring customers can easily find the products and services they need.
-- **Track Your Robot:** A special "Track ton robot" button allows users to access real-time information about their robots, providing convenience and peace of mind.
+- **Track Your Robot:** A crucial feature allowing users to authenticate with a robot/sensor ID and access real-time data about their robots.
 - **Contact and About Sections:** Informative sections about RoboNexus and contact details for customer support and inquiries.
 - **Login Page for Tracking:** A simple, secure login page where users can enter an identifier code to track their robots, with a background image to enhance the visual appeal.
+
+## Track Your Robot
+
+The "Track Your Robot" feature is an essential part of RoboNexus. It allows users to:
+- **Authenticate with an Identifier Code:** Users can enter the unique identifier code provided with their sensor.
+- **Access Real-Time Data:** Once authenticated, users can view real-time data about their sensors, such as temperature, speed, humidity, water flow, etc., depending on the sensor type.
+- **User-Friendly Interface:** The tracking page features a simple and intuitive interface to ensure users can easily access the information they need.
 
 ## Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
+- MySQL
 - jQuery
 - Node js
 
@@ -47,6 +61,4 @@ RoboNexus is a responsive website dedicated to the sale and custom design of rob
 ![Track Your Robot](screenshots/track.png)
 
 
-
-
-
+---
