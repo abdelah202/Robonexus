@@ -105,9 +105,50 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 	cd esp32-simulator
 	node simulate.js
 
-### Sneak Peek at the Database 
+### Sneak Peek at the login mecahanism
 
+Sensors types and id code are stored in the loginrobot table in the Sensors database :
 ![base donnees](screenshots/bd.png)
+The login page : 
+![base donnees](screenshots/track.png)
+The script related to the database connection and checking wether the credentials exist in the loginrobot table or not, and if so redirecting to a page that will display the data according to the sensor's type : 
+
+	 const connection = mysql.createConnection({
+	  host: "localhost",
+	  user: "root",
+	  password: "my_password",
+	  database: "sensors"
+	});
+	
+	// Connect to the database
+	connection.connect(function(error) {
+	  if (error) throw error;
+	  else console.log("Connected to the database successfully");
+	});
+	
+	// Store data for each sensor by ID
+	let sensorData = {};
+	
+	// Serve the login page
+	app.get("/", function(req, res) {
+	  res.sendFile(__dirname + "/track.html");
+	});
+	
+	// Handle login and redirect based on sensor type
+	app.post("/", encoder, function(req, res) {
+	  var robottype = req.body.robottype;
+	  var robotid = req.body.robotid;
+	  connection.query("SELECT * FROM loginrobot WHERE robot_type = ? AND robot_pass = ?", [robottype, robotid], function(error, results, fields) {
+	    if (results.length > 0) {
+	      res.redirect(`/${robottype.toLowerCase()}?id=${robotid}`);
+	    } else {
+	      res.redirect("/");
+	    }
+	    res.end();
+	  });
+	});
+ 	.....
+
 
 ### The ESP32-Simulator 
 The ESP32 simulator simulates the behavior of an ESP32 microcontroller, which is commonly used in IoT (Internet of Things) applications to gather sensor data. This simulator periodically generates and sends sensor data to your server to mimic the real-time operation of actual ESP32 devices in a production environment. Below is a detailed description of how this simulation works within your project.--
