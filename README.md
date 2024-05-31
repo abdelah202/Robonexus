@@ -1,6 +1,6 @@
 ![RoboNexus Logo](screenshots/logo.png)
 
-# RoboNexus - Conception de Robots et Données en Temps Réel 
+# RoboNexus - Conception de Robots| Données Temps Réel 
 
 RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
 
