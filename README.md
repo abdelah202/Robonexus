@@ -18,6 +18,9 @@ MALKI Abdellah - ELKOUSSAMI Khalid - OUABDERH Mohamed - TAOUIL Abdellah
 - **Login Page for Tracking:** A simple, secure login page where users can enter an identifier code to track their robots, with a background image to enhance the visual appeal.
 
 ## Track Your Robot
+<p align="center">
+  <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/text.gif">
+</p>
 ### Presentation 
 The "Track Your Robot" feature is an essential part of RoboNexus. It allows users to:
 - **Authenticate with an Identifier Code:** Users can enter the unique identifier code provided with their sensor.
