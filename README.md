@@ -1,6 +1,6 @@
 ![RoboNexus Logo](screenshots/logo.png)
 
-# RoboNexus - Vente et Conception de Robots
+# RoboNexus -,Conception de Robots et Données en Temps Réel 
 
 RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
 
@@ -23,6 +23,77 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 - **Authenticate with an Identifier Code:** Users can enter the unique identifier code provided with their sensor.
 - **Access Real-Time Data:** Once authenticated, users can view real-time data about their sensors, such as temperature, speed, humidity, water flow, etc., depending on the sensor type.
 - **User-Friendly Interface:** The tracking page features a simple and intuitive interface to ensure users can easily access the information they need.
+
+          +---------------+                +-------------------+
+          |               |                |                   |
+          |   Browser     | <------------> |    Express.js     |
+          | (Client Side) |                | (Server Side App) |
+          |               |                |                   |
+          +---------------+                +-------------------+
+                   ^                                |
+                   |                                |
+                   v                                v
+          +---------------+                +-------------------+
+          |               |                |                   |
+          |   Login Form  |                |  Sensor Data API  |
+          | (track.html)  |                |  Endpoints        |
+          |               |                |                   |
+          +---------------+                +-------------------+
+                   ^                                |
+                   |                                |
+                   v                                v
+          +---------------+                +-------------------+
+          |               |                |                   |
+          | Sensor Data   | <------------> | MySQL Database    |
+          | Display (EJS) |                |                   |
+          | (sensor.ejs)  |                |                   |
+          +---------------+                +-------------------+
+                   ^
+                   |
+                   v
+          +---------------+
+          |               |
+          | Sensor Data   |
+          |     ESP32     |
+          | or simulate.js|
+          |               |
+          +---------------+
+
+  ### Dependencies Needed
+  -**1 Install Node.js and npm:**
+	Download and install Node.js from nodejs.org. This will also install npm (Node Package Manager).
+
+-**2 Set up your project directory:**
+	Create a new directory for your project and navigate into it.
+	Initialize a new Node.js project by running npm init -y in the terminal. This will create a package.json file.
+
+-**3 Install required dependencies**
+	express: A web framework for Node.js.
+	mysql: A MySQL client for Node.js.
+	body-parser: Middleware to parse incoming request bodies.
+	axios: A promise-based HTTP client.
+	ejs: Embedded JavaScript templates.
+	
+	or use this command : 
+	npm install express mysql body-parser axios ejs
+
+-**4 Set up your MySQL database:**
+	Make sure you have MySQL installed and running on your machine.
+	Create the sensors database and the necessary tables (loginrobot and any other tables you need).
+	
+	use sensors;
+	create table if not exists loginrobot(
+		robot_id int not null primary key auto_increment,
+		robot_type varchar(255),
+		robot_pass varchar(255)
+	)
+
+	!!!NB : don't forget to change the password inn app.js
+	
+-**5 start the applications**
+	node app.js
+	cd esp32-simulator
+	node simulate.js
 
 ## Technologies Used
 
