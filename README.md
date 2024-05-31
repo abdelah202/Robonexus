@@ -112,7 +112,7 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 ### The ESP32-Simulator 
 The ESP32 simulator simulates the behavior of an ESP32 microcontroller, which is commonly used in IoT (Internet of Things) applications to gather sensor data. This simulator periodically generates and sends sensor data to your server to mimic the real-time operation of actual ESP32 devices in a production environment. Below is a detailed description of how this simulation works within your project.--
 <p align="center">
-  <img width="300" height="300" src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/esp.png">
+  <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/esp.png">
 </p>
 The primary purpose of the ESP32 simulator is to generate realistic sensor data and send it to the server's API endpoints. This allows to develop, test, and demonstrate the project without needing physical ESP32 devices and sensors.
 
@@ -233,7 +233,7 @@ Here is an example of how to upload data from an ESP32 microcontroller using a D
     MMMMMMMMMMMM MMMMMMMMMMMM MMMMMMMMMMM MMMMMMMMMMM MMMM MMMMMMMMMMM MMMMMMMMMMM oooooooooooo MMMM MMMMMMMMMMM MMMMMMMMMMMM 
 	
 <p align="center">
-  <img width="300" height="300" src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/same.gif">
+  <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/same.gif">
 </p>
 
 
