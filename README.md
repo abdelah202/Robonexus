@@ -1,6 +1,6 @@
 ![RoboNexus Logo](screenshots/logo.png)
 
-# RoboNexus - Conception de Robots| Données Temps Réel 
+# RoboNexus - Conception de Robots | Données Temps Réel 
 
 RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
 
@@ -108,6 +108,134 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 ### Sneak Peek at the Database 
 
 ![base donnees](screenshots/bd.png)
+
+### The ESP32-Simulator 
+The ESP32 simulator simulates the behavior of an ESP32 microcontroller, which is commonly used in IoT (Internet of Things) applications to gather sensor data. This simulator periodically generates and sends sensor data to your server to mimic the real-time operation of actual ESP32 devices in a production environment. Below is a detailed description of how this simulation works within your project.--
+<p align="center">
+  <img width="300" height="300" src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/esp.png">
+</p>
+The primary purpose of the ESP32 simulator is to generate realistic sensor data and send it to the server's API endpoints. This allows to develop, test, and demonstrate the project without needing physical ESP32 devices and sensors.
+
+**Components and Workflow** <br />
+The ESP32 simulator is implemented in a JavaScript file named simulate.js using Node.js and the axios library to send HTTP requests. The script performs the following functions:
+
+- Data Generation: The simulator creates random values for different types of sensors (DHT, SPD, WTR) to simulate temperature, humidity, speed, and water level data.
+- Data Sending: The generated data is packaged into HTTP POST requests and sent to the server's API endpoint at regular intervals.
+- Error Handling: The simulator includes basic error handling to manage any issues that might occur during data transmission.
+
+**Implementation** <br />
+
+    
+    const axios = require('axios');
+    const simulateSensorData = () => {
+    const sensors = [{ id: '123456', type: 'DHT', data: { temperature: Math.random() * 30, humidity: Math.random() * 100 } },
+    { id: '235874', type: 'DHT', data: { temperature: Math.random() * 30, humidity: Math.random() * 100 } },
+    { id: '282828', type: 'SPD', data: { speed: Math.random() * 100 } },
+    { id: '123456', type: 'SPD', data: { speed: Math.random() * 100 } },
+    { id: '000000', type: 'WTR', data: { waterLevel: Math.random() * 100 } }];
+    // Loop through each sensor to send its data
+    sensors.forEach(sensor => {
+    // Prepare the payload with sensor data
+    const payload = {
+      sensorId: sensor.id,
+      type: sensor.type
+    };
+    if (sensor.type === 'DHT') {
+      payload.temperature = sensor.data.temperature;
+      payload.humidity = sensor.data.humidity;
+    } else if (sensor.type === 'SPD') {
+      payload.speed = sensor.data.speed;
+    } else if (sensor.type === 'WTR') {
+      payload.waterLevel = sensor.data.waterLevel;
+    }
+
+    // Send the data to the server
+    axios.post('http://localhost:2800/api/data', payload)
+      .then(response => {
+        console.log(`Data sent for sensor ${sensor.id}:`, response.data);
+      })
+      .catch(error => {
+        console.error(`Error sending data for sensor ${sensor.id}:`, error.message);
+      });});};
+      // Set an interval to send data every 5 seconds
+      setInterval(simulateSensorData, 5000);
+      
+
+Data Generation: The sensors array contains objects representing different sensors, each with an ID, type, and randomly generated data. The types include:
+
+- DHT for temperature and humidity sensors.
+- SPD for speed sensors.
+- WTR for water level sensors.
+
+**Real ESP32 example**
+Here is an example of how to upload data from an ESP32 microcontroller using a DHT11 sensor.
+
+    
+    const char* ssid = "Your_SSID";
+    const char* password = "Your_PASSWORD";
+    const char* serverUrl = "http://192.168.76.169:2800/api/data";
+    #define DHTPIN 27    
+    #define DHTTYPE DHT11 
+    DHT dht(DHTPIN, DHTTYPE);
+    float readDHTTemperature() {
+    float t = dht.readTemperature();
+    return isnan(t) ? 0 : t;
+    }
+    float readDHTHumidity() {
+    float h = dht.readHumidity();
+    return isnan(h) ? 0 : h;
+    }
+    void setup() {
+    Serial.begin(9600);
+    delay(100);
+    WiFi.begin(ssid, password);
+    Serial.println("Connecting to Wi-Fi");
+    while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to Wi-Fi...");}
+    Serial.println("Connected to Wi-Fi ON");
+    Serial.println(WiFi.localIP());
+    }
+    
+    void loop() {
+    if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(serverUrl);
+    http.addHeader("Content-Type", "application/json");
+    float temperature = readDHTTemperature();   
+    float humidity = readDHTHumidity();
+    String jsonData = "{\"temperature\":" + String(temperature) + ",\"humidity\":" + String(humidity) + "}";
+    int httpResponseCode = http.POST(jsonData);
+
+    if (httpResponseCode > 0) {
+      Serial.print("HTTP Response code: ");
+      Serial.println(httpResponseCode);
+      String response = http.getString();
+      Serial.println("Response: ");
+      Serial.println(response);
+    } else {
+      Serial.print("Error code: ");
+      Serial.println(httpResponseCode);
+    }
+
+    http.end();
+    }
+    delay(5000);  // Send data every 5 seconds (adjust as needed) }
+    .
+    .
+    .
+    MMP"""""""MM MM"""""""`MM M""""""'YMM M""MMMMM""M M""M M"""""""`YM MMP"""""YMM              M""M M""""""'YMM MM""""""""`M 
+    M' .mmmm  MM MM  mmmm,  M M  mmmm. `M M  MMMMM  M M  M M  mmmm.  M M' .mmm. `M              M  M M  mmmm. `M MM  mmmmmmmM 
+    M         `M M'        .M M  MMMMM  M M  MMMMM  M M  M M  MMMMM  M M  MMMMM  M              M  M M  MMMMM  M M`      MMMM 
+    M  MMMMM  MM MM  MMMb. "M M  MMMMM  M M  MMMMM  M M  M M  MMMMM  M M  MMMMM  M              M  M M  MMMMM  M MM  MMMMMMMM 
+    M  MMMMM  MM MM  MMMMM  M M  MMMM' .M M  `MMM'  M M  M M  MMMMM  M M. `MMM' .M              M  M M  MMMM' .M MM  MMMMMMMM 
+    M  MMMMM  MM MM  MMMMM  M M       .MM Mb       dM M  M M  MMMMM  M MMb     dMM              M  M M       .MM MM        .M 
+    MMMMMMMMMMMM MMMMMMMMMMMM MMMMMMMMMMM MMMMMMMMMMM MMMM MMMMMMMMMMM MMMMMMMMMMM oooooooooooo MMMM MMMMMMMMMMM MMMMMMMMMMMM 
+	
+<p align="center">
+  <img width="300" height="300" src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/same.gif">
+</p>
+
 
 ## Technologies Used
 
