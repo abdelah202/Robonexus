@@ -60,14 +60,14 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
           +---------------+
 
   ### Dependencies Needed
-  -**1 Install Node.js and npm:**
+  - **1 Install Node.js and npm:**
 	Download and install Node.js from nodejs.org. This will also install npm (Node Package Manager).
 
--**2 Set up your project directory:**
+- **2 Set up your project directory:**
 	Create a new directory for your project and navigate into it.
 	Initialize a new Node.js project by running npm init -y in the terminal. This will create a package.json file.
 
--**3 Install required dependencies**
+- **3 Install required dependencies**
 	express: A web framework for Node.js.
 	mysql: A MySQL client for Node.js.
 	body-parser: Middleware to parse incoming request bodies.
@@ -77,7 +77,7 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 	or use this command : 
 	npm install express mysql body-parser axios ejs
 
--**4 Set up your MySQL database:**
+- **4 Set up your MySQL database:**
 	Make sure you have MySQL installed and running on your machine.
 	Create the sensors database and the necessary tables (loginrobot and any other tables you need).
 	
@@ -90,7 +90,7 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 
 	!!!NB : don't forget to change the password inn app.js
 	
--**5 start the applications**
+- **5 start the applications**
 	node app.js
 	cd esp32-simulator
 	node simulate.js
