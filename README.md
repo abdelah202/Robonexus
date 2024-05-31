@@ -1,6 +1,6 @@
 ![RoboNexus Logo](screenshots/logo.png)
 
-# RoboNexus -,Conception de Robots et Données en Temps Réel 
+# RoboNexus - Conception de Robots et Données en Temps Réel 
 
 RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
 
@@ -59,7 +59,9 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
           |               |
           +---------------+
 
-  ### Dependencies Needed
+### Dependencies Needed
+
+
 **1 Install Node.js and npm:**
 	Download and install Node.js from nodejs.org. This will also install npm (Node Package Manager).
 
