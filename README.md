@@ -105,6 +105,10 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 	cd esp32-simulator
 	node simulate.js
 
+### Sneak Peek at the Database 
+
+![base donnees](screenshots/bd.png)
+
 ## Technologies Used
 
 - HTML5
