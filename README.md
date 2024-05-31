@@ -167,6 +167,10 @@ The ESP32 simulator is implemented in a JavaScript file named simulate.js using 
 - Data Sending: The generated data is packaged into HTTP POST requests and sent to the server's API endpoint at regular intervals.
 - Error Handling: The simulator includes basic error handling to manage any issues that might occur during data transmission.
 
+<p align="center">
+  <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/sim.gif">
+</p>
+
 **Implementation** <br />
 
     
