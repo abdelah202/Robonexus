@@ -109,8 +109,11 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 
 Sensors types and id code are stored in the loginrobot table in the Sensors database :
 ![base donnees](screenshots/bd.png)
+
 The login page : 
-![base donnees](screenshots/track.png)
+
+![login page](screenshots/track.png)
+
 The script related to the database connection and checking wether the credentials exist in the loginrobot table or not, and if so redirecting to a page that will display the data according to the sensor's type : 
 
 	 const connection = mysql.createConnection({
