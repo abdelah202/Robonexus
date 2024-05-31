@@ -68,13 +68,12 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 	Initialize a new Node.js project by running npm init -y in the terminal. This will create a package.json file.
 
 **3 Install required dependencies**
-	express: A web framework for Node.js.
-	mysql: A MySQL client for Node.js.
-	body-parser: Middleware to parse incoming request bodies.
-	axios: A promise-based HTTP client.
-	ejs: Embedded JavaScript templates.
+	- express: A web framework for Node.js.
+	- mysql: A MySQL client for Node.js.
+	- body-parser: Middleware to parse incoming request bodies.
+	- axios: A promise-based HTTP client.
+	- ejs: Embedded JavaScript templates.
 	
-	or use this command : 
 	npm install express mysql body-parser axios ejs
 
 **4 Set up your MySQL database:**
@@ -88,7 +87,7 @@ The "Track Your Robot" feature is an essential part of RoboNexus. It allows user
 		robot_pass varchar(255)
 	)
 
-	!!!NB : don't forget to change the password inn app.js
+	!!!NB : don't forget to change the password in app.js
 	
 **5 start the applications**
 	
