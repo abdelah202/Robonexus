@@ -154,14 +154,16 @@ The script related to the database connection and checking wether the credential
 
 
 ### The ESP32-Simulator 
-The ESP32 simulator simulates the behavior of an ESP32 microcontroller, which is commonly used in IoT (Internet of Things) applications to gather sensor data. This simulator periodically generates and sends sensor data to your server to mimic the real-time operation of actual ESP32 devices in a production environment. Below is a detailed description of how this simulation works within your project.--
+The ESP32 simulator simulates the behavior of an ESP32 microcontroller, which is commonly used in IoT (Internet of Things) applications to gather sensor data. This simulator periodically generates and sends sensor data to your server to mimic the real-time operation of actual ESP32 devices in a production environment. Below is a detailed description of how this simulation works within your project.
+
 <p align="center">
   <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/esp .png">
 </p>
-The primary purpose of the ESP32 simulator is to generate realistic sensor data and send it to the server's API endpoints. This allows to develop, test, and demonstrate the project without needing physical ESP32 devices and sensors.
+
+The primary purpose of the ESP32 simulator is to generate realistic sensor data and send it to the server's API endpoints. This allows to develop, test, and demonstrate the project without needing physical ESP32 devices and sensors.<br />
 
 **Components and Workflow** <br />
-The ESP32 simulator is implemented in a JavaScript file named simulate.js using Node.js and the axios library to send HTTP requests. The script performs the following functions:
+The ESP32 simulator is implemented in a JavaScript file named simulate.js using Node.js and the axios library to send **HTTP requests**. The script performs the following functions:
 
 - Data Generation: The simulator creates random values for different types of sensors (DHT, SPD, WTR) to simulate temperature, humidity, speed, and water level data.
 - Data Sending: The generated data is packaged into HTTP POST requests and sent to the server's API endpoint at regular intervals.
