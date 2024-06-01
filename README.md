@@ -288,6 +288,8 @@ Here is an example of how to upload data from an ESP32 microcontroller using a D
 
 ### demo (when app works)
 
+![simulate js](screenshots/data_send.png)
+![app.js](screenshots/data_rec.png)
 
 ## Technologies Used
 
