@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="assets/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+    
+    <div class="hero">
+        <div class="navbar">
+            <a href="index.html"><img src="res/img/logo.png" class="logo1"></a>
+            <nav class="nav">
+                <ul>
+                    <li class="nav_list">
+                        <a href="shop.html" class="lien1">Robot Shop</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="custom.html" class="lien2">Custom Design</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="track.html" class="lien3">Track Your Robot</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="about.html" class="lien4">About us</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="contact.html" class="lien5">Contact us</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="track.html" style="text-decoration: none;"><button type="button" class="btn"> See Your RT Data  <span><i
+                                        class='bx bxs-chevrons-right bx-md bx-fade-right'></i></span></button></a>
+                    </li></ul>
+            </nav>
+        </div></div>
+
+<div class="main-content">
+   <div class="titlecontainer">
+    <h1>RoboNexus RoboShop</h1>
+    <h2>Happy Shopping !</h2>
+   </div>
+    <div class="desc_part" id="dht_card" >
+        <div class="product-container">
+          <div class="product-imagedht"></div>
+          <div class="product-details" id="dht">
+              <h1>DHT</h1>
+              <p>Real-Time Temperature and Humidity Sensor</p>
+              <ul>
+                  <li><a href="#" class="overview">Overview</a></li>
+                  <li><a href="#" class="key_features">Key Features</a></li>
+                  <li><a href="#" class="benefits">Benefits</a></li>
+                  <li><a href="#" class="applications">Applications</a></li>
+                  <li><a href="#" class="specifications">Specifications</a></li>
+                  <li><a href="#" class="box_content">What’s in the Box</a></li>
+              </ul>
+              <button id="dht-button">Buy Now $50</button>
+
+          </div>
+      </div>
+
+      <div class="desc-container" id="dht">
+          <h3>Overview:</h3>
+          <br><br>
+          <p style="margin-top: 20px; margin-left: -15px;">&nbsp;The DHT Robot offers real-time environmental monitoring, ensuring precise tracking of temperature and humidity for optimal conditions.</p>
+      </div>
+    </div>
+      <!--SPD-->
+      <div class="desc_part" id="spd_card">
+        <div class="product-container">
+          <div class="product-imagespd"></div>
+          <div class="product-details" id="spd">
+              <h1>SPD</h1>
+              <p>Real-Time Speed Sensor</p>
+              <ul>
+                  <li><a href="#" class="overview">Overview</a></li>
+                  <li><a href="#" class="key_features">Key Features</a></li>
+                  <li><a href="#" class="benefits">Benefits</a></li>
+                  <li><a href="#" class="applications">Applications</a></li>
+                  <li><a href="#" class="specifications">Specifications</a></li>
+                  <li><a href="#" class="box_content">What’s in the Box</a></li>
+              </ul>
+                <button id="spd-button">Buy Now $50</button>
+
+
+          </div>
+      </div>
+
+      <div class="desc-container" id="spd">
+          <h3>Overview:</h3>
+          <br><br>
+          <p style="margin-top: 20px; margin-left: -15px;">&nbsp;The SPD Sensor offers real-time speed monitoring, ensuring precise tracking of speed levels for optimal performance in various applications.</p>
+      </div>
+      </div>
+      <!--WTR-->
+      <div class="desc_part" id="wtr_card">
+        <div class="product-container">
+          <div class="product-imagewtr"></div>
+          <div class="product-details" id="wtr">
+              <h1>WTR</h1>
+              <p style="margin-left: 85px;">Real-Time Water Level Sensor</p>
+              <ul>
+                  <li><a href="#" class="overview">Overview</a></li>
+                  <li><a href="#" class="key_features">Key Features</a></li>
+                  <li><a href="#" class="benefits">Benefits</a></li>
+                  <li><a href="#" class="applications">Applications</a></li>
+                  <li><a href="#" class="specifications">Specifications</a></li>
+                  <li><a href="#" class="box_content">What’s in the Box</a></li>
+              </ul>
+              <button id="wtr-button">Buy Now $50</button>
+          </div>
+      </div>
+
+      <div class="desc-container" id="wtr">
+          <h3>Overview:</h3>
+          <br><br>
+          <p style="margin-top: 20px; margin-left: -15px;">&nbsp;The WTR Sensor offers real-time water level monitoring, ensuring precise tracking of water levels for optimal water management in various applications.</p>
+      </div>
+
+      
+      
+    <script src="assets/desc.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dhtButton = document.getElementById("dht-button");
+            const spdButton = document.getElementById("spd-button");
+            const wtrButton = document.getElementById("wtr-button");
+        
+            function setupBuyNowButton(button, productType) {
+                button.addEventListener("click", function() {
+                    alert(`You'll be redirected to the shopping form for ${productType} Robot`);
+                    // Redirect to custom.html with the robot type as a query parameter
+                    window.location.href = `custom.html?robotType=${productType}`;
+                });
+            }
+        
+            setupBuyNowButton(dhtButton, "DHT");
+            setupBuyNowButton(spdButton, "SPD");
+            setupBuyNowButton(wtrButton, "WTR");
+        });
+        </script>
+    <br>
+    <footer>
+        <p>&copy; 2024 RoboNexus. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
