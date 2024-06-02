@@ -217,11 +217,26 @@
                 });
             }
     
+            function getQueryParams() {
+                const params = {};
+                window.location.search.substring(1).split("&").forEach(param => {
+                    const [key, value] = param.split("=");
+                    params[decodeURIComponent(key)] = decodeURIComponent(value);
+                });
+                return params;
+            }
+    
             $(document).ready(function() {
                 updateNavigationButtons();
+    
+                const queryParams = getQueryParams();
+                if (queryParams.robotType) {
+                    $('#robotType').val(queryParams.robotType);
+                    handleRobotTypeChange();
+                }
             });
         </script>
-         <footer>
+        <footer>
             <p>&copy; 2024 RoboNexus. Tous droits réservés.</p>
         </footer>
     </body>
