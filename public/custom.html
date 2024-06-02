@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Design</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="icon" href="assets/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+        .status-message { display: none; }
+        .status-message.success { color: green; }
+        .status-message.error { color: red; }
+
+       
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="navbar">
+            <a href="index.html"><img src="res/img/logo.png" class="logo1"></a>
+            <nav class="nav">
+                <ul>
+                    <li class="nav_list">
+                        <a href="shop.html" class="lien1">Robot Shop</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="custom.html" class="lien2">Custom Design</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="track.html" class="lien3">Track Your Robot</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="about.html" class="lien4">About us</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="contact.html" class="lien5">Contact us</a>
+                    </li>
+                    <li class="nav_list">
+                        <a href="track.html" style="text-decoration: none;"><button type="button" class="btn"> See Your RT Data  <span><i
+                                        class='bx bxs-chevrons-right bx-md bx-fade-right'></i></span></button></a>
+                    </li>
+                </ul>
+            </nav>
+        </div></div>
+
+        <div class="mainccontent">
+            <div class="container">
+                <h2>RoboNexus</h2>
+                <h1>Shop & Custom Design</h1>
+                <hr><br><br>
+                
+                <form id="customForm" onsubmit="handleFormSubmit(event)">
+                    
+                    <div id="step1">
+                        <p>Here you can either pick and buy an existing robot or if you wish to build your own you can do so.</p>
+                        <label for="robotType">Choose Robot Type:</label>
+                        <select id="robotType" name="robotType" onchange="handleRobotTypeChange()">
+                            <option default value="none">--</option>
+                            <option value="DHT">DHT</option>
+                            <option value="SPD">SPD</option>
+                            <option value="WTR">WTR</option>
+                            <option value="OTHER">Others</option>
+                        </select>
+                        <p>By selecting the "Others" option, you can customize a robot according to your wishes, and we will be sent an email containing all the necessary information to build your own robot.</p>
+                    </div>
+                   
+                    <div id="step2" style="display: none;">
+                        <label for="mainBoard">Main Board:</label>
+                        <select id="mainBoard" name="mainBoard">
+                            <option value="Arduino">Arduino</option>
+                            <option value="Raspberry Pi">Raspberry Pi</option>
+                            <option value="ESP32">ESP32</option>
+                            <option value="STM32">STM32</option>
+
+                        </select>
+    
+                        <label for="sensors">Sensors:</label>
+                        <input type="text" id="sensors" name="sensors" placeholder="Sensor list, e.g., ultrasound, humidity">
+                       
+    
+                        <label for="actuators">Actuators:</label>
+                        <input type="text" id="actuators" name="actuators" placeholder="Actuator list, e.g., motors, screens">
+    
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" placeholder="Describe your custom design requirements"></textarea>
+                    </div>
+                    <div id="step3" style="display: none;">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+    
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" required>
+    
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+    
+                        <label for="address">Address:</label>
+                        <textarea id="address" name="address" required></textarea>
+                    </div>
+    
+                    <div class="form-navigation">
+                        <button type="button" id="prevButton" onclick="prevStep()">Back</button>
+                        <button type="button" id="nextButton" onclick="nextStep()">Next</button>
+                        <button type="submit" id="submitButton" style="display: none;">Submit</button>
+                    </div>
+    
+                    <div id="loading" class="loading-spinner"></div>
+                    <div id="statusMessage" class="status-message"></div>
+                </form>
+            </div>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            let currentStep = 1;
+    
+            function handleRobotTypeChange() {
+                const robotType = $('#robotType').val();
+                if (robotType === 'DHT' || robotType === 'SPD' || robotType === 'WTR') {
+                    $('#step1').hide();
+                    $('#step2').hide();
+                    $('#step3').show();
+                    currentStep = 3;
+                    updateNavigationButtons();
+                } else {
+                    $('#step1').hide();
+                    $('#step2').show();
+                    $('#step3').hide();
+                    currentStep = 2;
+                    updateNavigationButtons();
+                }
+            }
+    
+            function nextStep() {
+                if (currentStep === 1) {
+                    $('#step1').hide();
+                    $('#step2').show();
+                    currentStep = 2;
+                } else if (currentStep === 2) {
+                    $('#step2').hide();
+                    $('#step3').show();
+                    currentStep = 3;
+                }
+                updateNavigationButtons();
+            }
+    
+            function prevStep() {
+                if (currentStep === 2) {
+                    $('#step2').hide();
+                    $('#step1').show();
+                    currentStep = 1;
+                } else if (currentStep === 3) {
+                    const robotType = $('#robotType').val();
+                    if (robotType === 'DHT' || robotType === 'SPD' || robotType === 'WTR') {
+                        $('#step3').hide();
+                        $('#step1').show();
+                        currentStep = 1;
+                    } else {
+                        $('#step3').hide();
+                        $('#step2').show();
+                        currentStep = 2;
+                    }
+                }
+                updateNavigationButtons();
+            }
+    
+            function updateNavigationButtons() {
+                $('#prevButton').toggle(currentStep > 1);
+                $('#nextButton').toggle(currentStep < 3);
+                $('#submitButton').toggle(currentStep === 3);
+            }
+    
+            function handleFormSubmit(event) {
+                event.preventDefault();
+    
+                const formData = {
+                    robotType: $('#robotType').val(),
+                    mainBoard: $('#mainBoard').val(),
+                    sensors: $('#sensors').val().split(',').map(s => s.trim()),
+                    actuators: $('#actuators').val().split(',').map(a => a.trim()),
+                    description: $('#description').val(),
+                    name: $('#name').val(),
+                    phone: $('#phone').val(),
+                    email: $('#email').val(),
+                    address: $('#address').val()
+                };
+    
+                $('#loading').addClass('active');
+                $('#statusMessage').hide();
+    
+                $.ajax({
+                    type: 'POST',
+                    url: '/submit-custom-order',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    success: function(response) {
+                        $('#loading').removeClass('active');
+                        $('#statusMessage').addClass('success').removeClass('error').text('Form submitted successfully').show();
+                        setTimeout(function() {
+                            $('#statusMessage').fadeOut();
+                        }, 10000);
+                    },
+                    error: function(error) {
+                        $('#loading').removeClass('active');
+                        $('#statusMessage').addClass('error').removeClass('success').text('Error submitting form').show();
+                        setTimeout(function() {
+                            $('#statusMessage').fadeOut();
+                        }, 10000);
+                        console.log(error);
+                    }
+                });
+            }
+    
+            $(document).ready(function() {
+                updateNavigationButtons();
+            });
+        </script>
+         <footer>
+            <p>&copy; 2024 RoboNexus. Tous droits réservés.</p>
+        </footer>
+    </body>
+    </html>
