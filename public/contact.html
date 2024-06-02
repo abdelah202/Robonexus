@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" href="assets/icon.png">
+
+    <style>
+        .loading {
+            display: none;
+        }
+        .loading.active {
+            display: inline-block;
+        }
+        .status-message {
+            display: none;
+        }
+        .status-message.success {
+            padding: 7px 35px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: #00b969;
+            color: white;
+        }
+        .status-message.error {
+            padding: 7px 35px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: #b90019;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+        
+        <div class="hero">
+            <div class="navbar">
+                <a href="index.html"><img src="res/img/logo.png" class="logo1"></a>
+                <nav class="nav">
+                    <ul>
+                        <li class="nav_list">
+                            <a href="shop.html" class="lien1">Robot Shop</a>
+                        </li>
+                        <li class="nav_list">
+                            <a href="custom.html" class="lien2">Custom Design</a>
+                        </li>
+                        <li class="nav_list">
+                            <a href="track.html" class="lien3">Track Your Robot</a>
+                        </li>
+                        <li class="nav_list">
+                            <a href="about.html" class="lien4">About us</a>
+                        </li>
+                        <li class="nav_list">
+                            <a href="contact.html" class="lien5">Contact us</a>
+                        </li>
+                        <li class="nav_list">
+                            <a href="track.html" style="text-decoration: none;"><button type="button" class="btn"> See Your RT Data  <span><i
+                                            class='bx bxs-chevrons-right bx-md bx-fade-right'></i></span></button></a>
+                        </li>
+                </nav>
+            </div></div>
+    
+    <div class="main-content">
+       <div class="contact-container">
+        <h1>Contact Us</h1>
+    <h2>Feel free to tell us anything !</h2>
+        <form id="contactForm">
+            <input type="text" name="name" id="name" placeholder="Your Name" required>
+            <input type="email" name="emaill" id="emaill" placeholder="Your Email" required>
+            <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+            <span class="loading" id="loading">Sending...</span>
+            <div class="status-message" id="statusMessage"></div>
+        </form>
+    </div>
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#contactForm').on('submit', function(e) {
+                    e.preventDefault(); // Prevent the default form submission
+    
+                    const formData = {
+                        name: $('#name').val(),
+                        emaill: $('#emaill').val(),
+                        message: $('#message').val()
+                    };
+    
+                    // Show the loading indicator
+                    $('#loading').addClass('active');
+                    $('#statusMessage').hide();
+    
+                    $.ajax({
+                    type: 'POST',
+                    url: '/send-email',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+
+                     error: function(error) {
+                        $('#loading').removeClass('active');
+                        $('#statusMessage').addClass('error').removeClass('success').text('Error sending email').show();
+                        setTimeout(function() {
+                            $('#statusMessage').fadeOut();
+                        }, 5000); // Disappear after 5 seconds
+                        console.log(error);
+                    },
+                    success: function(response) {
+                        $('#loading').removeClass('active');
+                        $('#statusMessage').addClass('success').removeClass('error').text('Email sent successfully').show();
+                        setTimeout(function() {
+                            $('#statusMessage').fadeOut();
+                        }, 5000); // Disappear after 5 seconds
+                    },
+                   
+                });
+            });
+        });
+    </script>
+        
+</div>
+     <footer>
+        <p>&copy; 2024 RoboNexus. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
