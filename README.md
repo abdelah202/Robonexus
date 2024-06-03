@@ -293,6 +293,48 @@ We run the esp32-simulator/simulate.js
 When checking the cosole of app.js <br />
 ![app.js](screenshots/data_rec.png)
 
+
+
+### High-Level Architecture Diagram
+
+Below is a high-level architecture diagram illustrating the different components of the RoboNexus platform and the flow of data from different robots.
+
+```mermaid
+graph TD
+    subgraph Client
+        A1[User Interface] --> |Home| B1(Home Page)
+        A1 --> |Shop| B2(Shop Page)
+        A1 --> |Custom Design| B3(Custom Design Page)
+        A1 --> |Track Your Robot| B4(Track Your Robot Page)
+        A1 --> |Contact| B5(Contact Page)
+    end
+
+    subgraph Server
+        B1 --> |Requests| C1(app.js)
+        B2 --> |Requests| C1
+        B3 --> |Requests| C1
+        B4 --> |Requests| C1
+        B5 --> |Requests| C1
+        C1 --> |Form Submissions| D1[Database]
+        C1 --> |Sensor Data| D2[Data Processing]
+    end
+
+    subgraph Robots
+        E1[DHT Robot] --> |Data| D2
+        E2[SPD Robot] --> |Data| D2
+        E3[WTR Robot] --> |Data| D2
+        E4[Other Robots] --> |Data| D2
+    end
+
+    subgraph ESP32 Simulator
+        F1[ESP32 Simulator] --> |Simulated Data| D2
+    end
+
+    D2 --> |Processed Data| C1
+    C1 --> |Response| A1
+
+
+
 ## Technologies Used
 
 - HTML5
