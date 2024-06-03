@@ -286,9 +286,11 @@ Here is an example of how to upload data from an ESP32 microcontroller using a D
   <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/same.gif">
 </p>
 
-### demo (when app works)
-
+### Real time data displat AT WORK
+We run the esp32-simulator/simulate.js 
 ![simulate js](screenshots/data_send.png)
+
+When checking the cosole of app.js
 ![app.js](screenshots/data_rec.png)
 
 ## Technologies Used
