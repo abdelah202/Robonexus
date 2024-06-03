@@ -290,7 +290,7 @@ Here is an example of how to upload data from an ESP32 microcontroller using a D
 We run the esp32-simulator/simulate.js 
 ![simulate js](screenshots/data_send.png)
 
-When checking the cosole of app.js
+When checking the cosole of app.js <br />
 ![app.js](screenshots/data_rec.png)
 
 ## Technologies Used
