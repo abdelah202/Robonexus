@@ -386,15 +386,95 @@ When checking the cosole of app.js we can see the value and type of data sent by
 Finally with the sensor.ejs file we can display the data in a web page : 
 ![data.png](screenshots/data.png)
 
+## Shop & Custom Design  
+### Shop 
+Allows users to browse and purchase different types of robots. <br />
+When choosing  to buy one of our 3 robots (DHT, SPD, WTR), the client will be redirected to the information section where they'll fill in their name, phone number, email and address. <br />
+The order is then insered in the orders table in our database.
 
+And an email is sent to us with details of the  order :
+<p align="center">
+  <img src="screenshots/emailorder.png">
+</p>
+using this bit of script : 
+
+```bash
+const transporter = nodemailer.createTransport({
+service: 'hotmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
+
+// Handling custom order form submission
+app.post('/submit-custom-order', (req, res) => {
+  const { robotType, mainBoard, sensors, actuators, description, name, phone, email, address } = req.body;
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'robonexus2024@gmail.com',
+    subject: 'New Order',
+    text: `Robot Type: ${robotType}\nMain Board: ${mainBoard}\nSensors: ${sensors.join(', ')}\nActuators: ${actuators.join(', ')}\nDescription: ${description}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Error sending email');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.status(200).send('Order submitted successfully');
+    }
+  });
+});
+```
+	
+This part requires to install few more dependencies 
+
+	npm install nodemailer dotenv
+
+For security reasons, it's recommended to store email credentials in environment variables instead of hardcoding them in your application. We can use the dotenv package for this by creating .env file in the root of the project and adding the credentials.
+
+### Custom designed Robots
+Enables users to customize their own robots, including selecting components and submitting custom orders. <br />
+Users can choose on of the existing robots or click on other, when they do so they can fully customize their robot by choosing the main board, sensors, actuators and add a description of what they want. All these informations are sent to us by email and added to the Orders table in our database along with the regular orders from the shop.
+![Orders table](screenshots/ordertbl.png)
+
+
+## Contact page
+Facilitates communication between users and the platform's support team.<br />
+Using the same principle of the shop page to send us emails from users (Nodemailer js) :
+![contact email](screenshots/contactmail.png)
+
+
+## Setup 
 
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/home1.png)
+![Home Page](screenshots/home2.png)
+![Home Page](screenshots/home3.png)
+![Home Page](screenshots/home4.png)
 
 ### Track Your Robot
 ![Track Your Robot](screenshots/track.png)
+
+### Shop 
+![Shop ](screenshots/shop1.png)
+![Shop ](screenshots/shop2.png)
+![Shop ](screenshots/shop3.png)
+
+### Custom Design 
+![Custom ](screenshots/custom1.png)
+![Custom ](screenshots/custom2.png)
+
+
+### Contact us
+![contact ](screenshots/contact.png)
+
+## Video Demo
 
 
 ---
