@@ -2,7 +2,7 @@
 
 # RoboNexus - Conception de Robots | Données Temps Réel 
 
-RoboNexus is a responsive website dedicated to the sale and custom design of robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
+RoboNexus is a website dedicated to the sale and custom design of robots, and also the display of real time data of the sold robots. This project combines modern web technologies and design principles to create an engaging and functional online presence for RoboNexus.
 
 ## Team Members
 
@@ -10,12 +10,100 @@ MALKI Abdellah - ELKOUSSAMI Khalid - OUABDERH Mohamed - TAOUIL Abdellah
 
 ## Features
 
-- **Responsive Navigation Bar:** The navigation bar transforms into a menu icon on smaller screens for a seamless browsing experience across all devices.
-- **Image Slider:** A dynamic image slider showcases various robot models, changing images every 10 seconds or when clicked.
-- **Service Sections:** Dedicated sections provide detailed information on robot sales and custom design services, ensuring customers can easily find the products and services they need.
-- **Track Your Robot:** A crucial feature allowing users to authenticate with a robot/sensor ID and access real-time data about their robots.
-- **Contact and About Sections:** Informative sections about RoboNexus and contact details for customer support and inquiries.
-- **Login Page for Tracking:** A simple, secure login page where users can enter an identifier code to track their robots, with a background image to enhance the visual appeal.
+- **Home Page**: Overview and navigation.
+- **Shop Page**: Browse and purchase different types of robots.
+- **Custom Design Page**: Customize your own robots by selecting components and submitting custom orders.
+- **Track Your Robot Page**: Real-time data display from various sensors on the robots.
+- **Contact Page**: Communication with the support team.
+- **Backend (app.js)**: Server-side logic for handling form submissions, data processing, and database communication.
+- **ESP32 Simulator**: Simulates sensor data for demonstration purposes.
+
+## Project Structure
+
+- **public/**: Contains static files (CSS, JavaScript, images).
+- **views/**: Contains HTML templates.
+- **app.js**: Main server-side application logic.
+- **routes/**: Defines routes for handling HTTP requests.
+
+## High-Level Architecture Diagram
+
+Below is a high-level architecture diagram illustrating the different components of the RoboNexus platform and the flow of data from different robots.
+
+```mermaid
+graph TD
+    subgraph Client
+        A1[User Interface] --> |Home| B1(Home Page)
+        A1 --> |Shop| B2(Shop Page)
+        A1 --> |Custom Design| B3(Custom Design Page)
+        A1 --> |Track Your Robot| B4(Track Your Robot Page)
+        A1 --> |Contact| B5(Contact Page)
+    end
+
+    subgraph Server
+        B1 --> |Requests| C1(app.js)
+        B2 --> |Requests| C1
+        B3 --> |Requests| C1
+        B4 --> |Requests| C1
+        B5 --> |Requests| C1
+        C1 --> |Form Submissions| D1[Database]
+        C1 --> |Sensor Data| D2[Data Processing]
+    end
+
+    subgraph Robots
+        E1[DHT Robot] --> |Data| D2
+        E2[SPD Robot] --> |Data| D2
+        E3[WTR Robot] --> |Data| D2
+        E4[Other Robots] --> |Data| D2
+    end
+
+    subgraph ESP32 Simulator
+        F1[ESP32 Simulator] --> |Simulated Data| D2
+    end
+
+    D2 --> |Processed Data| C1
+    C1 --> |Response| A1
+```
+### Explanation : 
+
+- Client: Represents the front-end user interface with different pages.
+- Server: Handles requests from the client, processes data, and communicates with the database.
+- Robots: Different types of robots sending sensor data to the server.
+- ESP32 Simulator: Simulates sensor data for demonstration purposes.
+- Data Flow: Shows how data flows from robots to the server for processing and then back to the client.
+
+
+## Architecture Overview
+The RoboNexus project follows a clear separation of concerns between the front-end and back-end components.
+
+**Front-End**
+- Languages: HTML, CSS, JavaScript
+- Frameworks: None (Vanilla HTML/CSS/JS)
+- Directory: public/ <br />
+The front-end is responsible for rendering the user interface, capturing user interactions, and displaying data. It includes static HTML pages styled with CSS and enhanced with JavaScript for interactivity.
+
+**Back-End**
+- Languages: JavaScript (Node.js)
+- Frameworks: Express.js
+- Directory: Root directory (e.g., app.js) <br />
+The back-end handles server-side logic, including routing, data processing, and interaction with the database. It is built using Node.js with the Express.js framework.
+
+**ESP32 Simulator**
+- Languages: JavaScript (Node.js)
+- Directory: esp32-simulator/ <br />
+The ESP32 simulator mimics sensor data sent from robots, which is used for demonstration and testing purposes.
+
+## API Endpoints
+
+- GET /: Serves the login page.
+- POST /: Handles login and redirects based on sensor type.
+- GET /dht: Serves the DHT sensor page with dynamic data.
+- GET /spd: Serves the SPD sensor page with dynamic data.
+- GET /wtr: Serves the WTR sensor page with dynamic data.
+- POST /api/data: Receives data from sensors.
+- GET /api/data/ : Retrieves data for a specific sensor.
+- POST /subscribe: Handles newsletter subscription.
+- POST /send-email: Handles contact form submission.
+- POST /submit-custom-order: Handles custom order form submission.
 
 ## Track Your Robot
 
@@ -286,47 +374,19 @@ Here is an example of how to upload data from an ESP32 microcontroller using a D
   <img src="https://github.com/m-elhamlaoui/projet-web-robonexus/blob/main/screenshots/same.gif">
 </p>
 
-### Real time data displat AT WORK
+### Real time data display AT WORK
 We run the esp32-simulator/simulate.js 
-![simulate js](screenshots/data_send.png)
+![simulate js](screenshots/data_send.png)<br />
+The simulated data from six sensors is sent through http post request to 'http://localhost:2800/api/data' and well received by our server. <br />
 
-When checking the cosole of app.js <br />
+
+When checking the cosole of app.js we can see the value and type of data sent by each sensor :<br />
 ![app.js](screenshots/data_rec.png)
 
+Finally with the sensor.ejs file we can display the data in a web page : 
+![data.png](screenshots/data.png)
 
 
-### High-Level Architecture Diagram
-
-Below is a high-level architecture diagram illustrating the different components of the RoboNexus platform and the flow of data from different robots.
-
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- MySQL
-- jQuery
-- Node js
-
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/RoboNexus.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd RoboNexus
-    ```
-3. Open `index.html` in your preferred web browser.
-
-## Usage
-
-- **Navigation:** Use the navigation bar to browse different sections of the website.
-- **Slider:** The image slider will automatically change images every 10 seconds. Click on the slider to manually change the image.
-- **Track Your Robot:** Click on the "Track ton robot" button to go to the tracking page, where you can enter your robot's identifier code to get real-time information.
-- **Login Page:** The login page is accessible via the "Track ton robot" button and features a background image for enhanced visual appeal.
 
 ## Screenshots
 
