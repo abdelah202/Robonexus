@@ -454,7 +454,18 @@ Using the same principle of the shop page to send us emails from users (Nodemail
 
 
 ## Setup 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/robonexus.git
+   cd robonexus
+2. Install dependencies
 
+   		npm install express mysql body-parser axios ejs nodemailer dotenv
+3. Run the server
+
+		node app.js
+   
+   
 ## Screenshots
 
 ### Home Page
