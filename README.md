@@ -434,6 +434,7 @@ This part requires to install few more dependencies
 
 	npm install nodemailer dotenv
 
+#### Security 
 For security reasons, it's recommended to store email credentials in environment variables instead of hardcoding them in your application. We can use the dotenv package for this by creating .env file in the root of the project and adding the credentials. <br />
 And also all input fields must be checked and match the type in order to prevent any ***SQL Injection**.
 <p align="center">
